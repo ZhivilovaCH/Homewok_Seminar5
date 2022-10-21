@@ -2,49 +2,34 @@
 //[3, 7, 23, 12] -> 19
 //[-4, -6, 89, 6] -> 0
 
-int[] GetArrayFromString(string stringArray)
-{
-    string[] nums = stringArray.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-    int[] res = new int[nums.Length];
 
-    for (int i = 0; i < nums.Length; i++)
+int[] CountOdd = new int[4];
+
+void PrintArray(int[] array)
+{
+    for (int i = 0; i < array.Length; i++)
     {
-        res[i] = int.Parse(nums[i]);
+        array[i] = new Random().Next(-99, 100);
+        Console.Write($"i={i} {array[i]}, ");
     }
-    return res;
+}
+
+int GetSum(int[] array)
+{
+    int count = 0;
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (i % 2 == 1)
+        {
+            count += array[i];
+        }
+    }
+    return count;
 }
 
 Console.Clear();
-Console.WriteLine("Введите массив через пробел: ");
-string input = Console.ReadLine();
-int[] numArray = GetArrayFromString(input);
-Console.WriteLine("Введите искомое число: ");
-int n = int.Parse(Console.ReadLine()!);
-
-if (CheckArray(numArray, n))
-{
-    Console.WriteLine("Да");
-}
-else
-{
-    Console.WriteLine("Нет");
-
-}
-
-Console.Clear();
-Console.WriteLine(" Hello ");
-int[] CountEqual = new int[8];
-int count = 0;
-for (int i = 0; i < CountEqual.Length; i++)
-{
-    CountEqual[i] = new Random().Next(-100, 100);
-    if (CountEqual[i] % 2 == 1)
-    {
-        count += CountEqual[i];
-
-    }
-    //Console.WriteLine ("count " + count);
-    Console.Write(CountEqual[i] + " ");
-}
+PrintArray(CountOdd);
 Console.WriteLine();
-Console.WriteLine("Cуммa элементов, стоящих на нечётных позициях   = " + count);
+int res = GetSum(CountOdd);
+Console.WriteLine($"Cуммa элементов, стоящих на нечётных позициях = {res}");
